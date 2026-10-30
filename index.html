@@ -213,6 +213,39 @@ body:before,body:after{display:none!important}
 @keyframes routeFade{from{opacity:.72}to{opacity:1}}
 #scrollProgress{height:2px;box-shadow:none}
 @media(prefers-reduced-motion:reduce){.route-enter{animation:none!important}}
+
+/* Mobile course routes can scroll; desktop keeps the fixed focus layout. */
+@media(max-width:620px){
+  body.course-mode{
+    height:auto!important;
+    min-height:100dvh;
+    overflow-x:hidden!important;
+    overflow-y:auto!important;
+  }
+  body.course-mode #home{
+    height:auto!important;
+    min-height:calc(100dvh - 64px);
+    overflow:visible!important;
+  }
+  body.course-mode #classroom,
+  body.course-mode #classroom>.wrap,
+  body.course-mode #classroom .classroom{
+    height:auto!important;
+    min-height:0;
+    overflow:visible!important;
+  }
+  body.course-mode #classroom .classroom{
+    grid-template-rows:auto auto;
+  }
+  body.course-mode .sidebar,
+  body.course-mode .lesson{
+    max-height:none!important;
+    min-height:0;
+    overflow:visible!important;
+    overscroll-behavior:auto;
+  }
+  body.course-mode .course-back{display:block!important}
+}
 </style>
 </head>
 <body>

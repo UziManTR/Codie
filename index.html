@@ -59,6 +59,16 @@ footer .foot strong{transition:color .3s}footer:hover .foot strong{color:var(--c
 @media(max-width:620px){.hero:before{right:0}.sectionhead h2{background-size:180% auto}}
 @media(prefers-reduced-motion:reduce){body:before,body:after{display:none}#scrollProgress{display:none}.course,.step,.robot,.head,.body,.bubble,.float,.orbit,.eye,.mouth,.antenna:after,.sectionhead h2{animation:none!important;transition:none!important}.reveal{filter:none;opacity:1;transform:none}}
 
+
+/* Course routes: #python, #html, #css, #javascript */
+body.course-mode .hero,body.course-mode #courses,body.course-mode #how{display:none}
+body.course-mode #classroom{padding-top:42px;min-height:calc(100vh - 150px)}
+body.course-mode #classroom .sectionhead{display:none}
+body.course-mode #classroom .classroom{margin-top:0}
+.course-back{width:100%;margin:0 0 20px;padding:10px 11px;text-align:left;border:1px solid var(--line);border-radius:8px;background:#142137;color:var(--cyan);font-size:12px}
+.course-back:hover{border-color:var(--cyan);transform:translateX(-3px)}
+body.course-mode header .brand:after{content:" / "+attr(data-course);color:var(--muted);font:11px var(--mono)}
+
 </style>
 </head>
 <body>
@@ -121,8 +131,15 @@ javascript:{name:'JavaScript basics',lessons:[
 const $=id=>document.getElementById(id);let course='python',index=0,done=JSON.parse(localStorage.getItem('codie-progress')||'{}'),answered=false;
 function render(){const data=courses[course],l=data.lessons[index],finished=done[course]||[];$('courseSelect').value=course;$('lessonNumber').textContent='LESSON '+String(index+1).padStart(2,'0')+' / '+data.lessons.length;$('lessonTitle').textContent=l[0];$('lessonIntro').textContent=l[1];$('lessonExplain').innerHTML='<p>'+l[2]+'</p>';$('lessonCode').textContent=l[3];$('lessonTip').textContent='CODIE TIP: '+l[4];$('exampleLanguage').textContent=course.toUpperCase();$('quizQuestion').textContent=l[5];$('feedback').textContent='';answered=false;$('quizAnswers').innerHTML='';l[6].forEach((v,i)=>{const b=document.createElement('button');b.className='answer';b.textContent=String.fromCharCode(65+i)+'. '+v;b.onclick=()=>answer(i);$('quizAnswers').appendChild(b)});$('lessonList').innerHTML='';data.lessons.forEach((v,i)=>{const b=document.createElement('button');b.className='lessonlink'+(i===index?' active':'')+(finished.includes(i)?' done':'');const n=document.createElement('span');n.className='num';n.textContent=finished.includes(i)?'✓':String(i+1).padStart(2,'0');const t=document.createElement('span');t.textContent=v[0];b.append(n,t);b.onclick=()=>{index=i;render()};$('lessonList').appendChild(b)});$('progressText').textContent=finished.length+' / '+data.lessons.length+' done';$('progressBar').style.width=(finished.length/data.lessons.length*100)+'%';$('prev').disabled=index===0;$('next').disabled=index===data.lessons.length-1;$('complete').textContent=finished.includes(index)?'Completed ✓':'Mark complete ✓'}
 function answer(i){if(answered)return;answered=true;const right=courses[course].lessons[index][7];[...$('quizAnswers').children].forEach((b,n)=>{if(n===right)b.classList.add('good');else if(n===i)b.classList.add('bad');b.disabled=true});$('feedback').textContent=i===right?'Correct! Nice work. ✦':'Not quite. The correct answer is highlighted. Keep going!'}
-function setCourse(c){course=c;index=0;render()}
-$('courseSelect').onchange=e=>setCourse(e.target.value);document.querySelectorAll('[data-course]').forEach(b=>b.onclick=()=>{setCourse(b.dataset.course);location.hash='classroom'});$('complete').onclick=()=>{done[course]=done[course]||[];if(!done[course].includes(index))done[course].push(index);localStorage.setItem('codie-progress',JSON.stringify(done));render()};$('prev').onclick=()=>{if(index>0){index--;render()}};$('next').onclick=()=>{if(index<courses[course].lessons.length-1){index++;render()}};$('menu').onclick=()=>$('nav').classList.toggle('open');document.querySelectorAll('nav a').forEach(a=>a.onclick=()=>$('nav').classList.remove('open'));render();
+function validCourse(c){return Object.prototype.hasOwnProperty.call(courses,c)}
+function setCourse(c,updateHash=true){if(!validCourse(c))return;course=c;index=0;render();document.body.classList.add('course-mode');if(updateHash&&location.hash!=='#'+c)location.hash=c;window.scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'})}
+function showHome(){document.body.classList.remove('course-mode');course='python';index=0;render()}
+function routeFromHash(){const route=decodeURIComponent(location.hash.slice(1)).toLowerCase();if(validCourse(route)){if(course!==route||!document.body.classList.contains('course-mode'))setCourse(route,false)}else{document.body.classList.remove('course-mode');if(route==='courses')document.getElementById('courses').scrollIntoView({behavior:reduceMotion?'auto':'smooth'});}}
+const back=document.createElement('button');back.className='course-back';back.textContent='← All courses';back.onclick=()=>{history.pushState(null,'',location.pathname+location.search);showHome();document.getElementById('courses').scrollIntoView({behavior:reduceMotion?'auto':'smooth'})};$('lessonList').parentElement.insertBefore(back,$('lessonList'));
+$('courseSelect').onchange=e=>setCourse(e.target.value);
+document.querySelectorAll('[data-course]').forEach(b=>b.onclick=()=>setCourse(b.dataset.course));
+window.addEventListener('hashchange',routeFromHash);
+document.querySelectorAll('nav a[href="#courses"]').forEach(a=>a.addEventListener('click',()=>{history.pushState(null,'',location.pathname+location.search);showHome()}));$('complete').onclick=()=>{done[course]=done[course]||[];if(!done[course].includes(index))done[course].push(index);localStorage.setItem('codie-progress',JSON.stringify(done));render()};$('prev').onclick=()=>{if(index>0){index--;render()}};$('next').onclick=()=>{if(index<courses[course].lessons.length-1){index++;render()}};$('menu').onclick=()=>$('nav').classList.toggle('open');document.querySelectorAll('nav a').forEach(a=>a.onclick=()=>$('nav').classList.remove('open'));render();routeFromHash();
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.1});document.querySelectorAll('.reveal').forEach(e=>observer.observe(e));
 
 // Motion details: pointer glow, gentle eye tracking, scroll meter and tiny click sparks.

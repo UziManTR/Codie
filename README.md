@@ -2,11 +2,11 @@
 
 **Helps teenagers code!**
 
-Codie is a friendly, animated coding-learning homepage for curious beginners. It introduces Python, HTML, CSS and JavaScript, and includes an in-browser playground for experimenting with code.
+Codie is a small, beginner-friendly coding learning platform. It has guided starter courses for **Python, HTML, CSS and JavaScript**. Each course is split into short lessons with explanations, code examples, quick multiple-choice checks and saved lesson progress.
 
 ## Run locally
 
-Open `index.html` in a modern browser. No build step is required. Python execution loads Pyodide from its CDN the first time you run Python code, so an internet connection is needed for that feature.
+Open `index.html` in a modern browser. No build step or installation is needed. Lesson completion is saved in the browser using local storage.
 
 ## Deploy with GitHub Pages
 

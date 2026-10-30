@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b14">
+  <meta name="description" content="Codie helps teenagers learn to code. Start with Python, HTML, CSS and JavaScript through fun, hands-on lessons.">
+  <title>Meet Codie | Learn to Code</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#080b14;--panel:#101625;--panel2:#141e30;--blue:#4d8dff;--cyan:#6ce7ff;--text:#edf4ff;--muted:#8998b2;--line:rgba(140,170,220,.15);--green:#8df5bb;--mono:"DM Mono",monospace;--pixel:"Press Start 2P",monospace;--font:"Space Grotesk",sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);overflow-x:hidden}body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 78% 12%,rgba(39,105,220,.14),transparent 36%),radial-gradient(ellipse at 8% 55%,rgba(31,91,180,.08),transparent 32%),linear-gradient(rgba(110,150,220,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(110,150,220,.025) 1px,transparent 1px);background-size:auto,auto,42px 42px,42px 42px}
+    a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}.wrap{width:min(1160px,calc(100% - 48px));margin:auto}.topbar{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(8,11,20,.82);backdrop-filter:blur(18px);z-index:20}.brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:-.04em;font-size:21px}.brand-mark{width:34px;height:34px;background:var(--blue);border-radius:10px;display:grid;place-items:center;box-shadow:0 0 24px #397fff55;color:#fff;font-family:var(--pixel);font-size:12px}.nav{display:flex;align-items:center;gap:32px;color:var(--muted);font-size:14px}.nav a:hover{color:white}.nav-cta,.primary{background:var(--blue);color:white;border:1px solid #79aaff55;border-radius:10px;padding:12px 18px;font-weight:700;box-shadow:0 8px 30px #347bff28;transition:.2s}.nav-cta:hover,.primary:hover{transform:translateY(-3px);box-shadow:0 12px 34px #347bff55}.menu-btn{display:none;background:none;border:0;color:white;font-size:24px}
+    .hero{min-height:670px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:50px;padding:72px 0 85px;position:relative}.eyebrow{font:11px var(--mono);color:var(--cyan);letter-spacing:.17em;text-transform:uppercase;display:flex;align-items:center;gap:10px}.eyebrow:before{content:"";width:24px;height:1px;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}.hero h1{font-size:clamp(52px,7.4vw,94px);line-height:.99;letter-spacing:-.075em;margin:26px 0 24px;font-weight:700}.pixel-word{display:block;color:var(--blue);font:clamp(27px,4.1vw,48px)/1.5 var(--pixel);letter-spacing:-.06em;text-shadow:4px 4px 0 #173c86,0 0 32px #438cff66}.hero-copy{font-size:18px;line-height:1.7;color:var(--muted);max-width:490px}.hero-copy strong{color:var(--text);font-weight:600}.hero-actions{display:flex;align-items:center;gap:18px;margin-top:32px}.secondary{padding:12px 18px;border:1px solid var(--line);border-radius:10px;color:#d8e5ff;font-weight:600;transition:.2s}.secondary:hover{border-color:#659cff;transform:translateY(-2px)}.micro-proof{display:flex;gap:18px;align-items:center;margin-top:38px;color:var(--muted);font:11px var(--mono)}.micro-proof span{display:flex;align-items:center;gap:7px}.live-dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 10px var(--green)}
+    .stage{height:480px;position:relative;display:grid;place-items:center;isolation:isolate}.orbit{position:absolute;width:390px;height:390px;border:1px solid #548dff2a;border-radius:50%;animation:spin 32s linear infinite}.orbit:before,.orbit:after{content:"";position:absolute;width:8px;height:8px;border-radius:2px;background:var(--cyan);box-shadow:0 0 16px var(--cyan)}.orbit:before{top:52px;left:40px}.orbit:after{bottom:54px;right:32px;background:var(--blue)}.orbit.two{width:460px;height:460px;border-style:dashed;border-color:#548dff18;animation:spin 48s linear infinite reverse}.planet{position:absolute;width:12px;height:12px;border-radius:50%;background:#a7c8ff;box-shadow:0 0 22px #4d8dff;top:42px;right:68px}.robot-wrap{position:relative;z-index:2;animation:float 4.5s ease-in-out infinite;filter:drop-shadow(0 28px 35px #0008)}.robot{width:230px;height:255px;position:relative}.antenna{position:absolute;top:-34px;left:108px;width:14px;height:38px;background:#8ba7d7;border:3px solid #d5e6ff;border-radius:8px}.antenna:after{content:"";position:absolute;width:17px;height:17px;background:var(--cyan);border:3px solid #d5f8ff;border-radius:50%;top:-12px;left:-5px;box-shadow:0 0 22px var(--cyan);animation:blink 2s infinite}.head{position:absolute;top:0;left:14px;width:202px;height:164px;border-radius:48px 48px 38px 38px;background:linear-gradient(145deg,#f3f8ff,#9db7e2 72%,#6d87b8);border:5px solid #dceaff;box-shadow:inset -12px -13px 0 #718bb8,inset 8px 8px 0 white,0 12px 35px #2b6dd966}.ear{position:absolute;top:62px;width:25px;height:48px;border-radius:9px;background:#6d91d1;border:4px solid #bdd5ff}.ear.left{left:0}.ear.right{right:0}.face{position:absolute;top:47px;left:39px;width:124px;height:74px;background:#101a2c;border:4px solid #526b96;border-radius:24px;display:flex;align-items:center;justify-content:center;gap:27px;box-shadow:inset 0 0 22px #000}.eye{width:15px;height:22px;border-radius:8px;background:var(--cyan);box-shadow:0 0 14px #6ce7ff;animation:eyeBlink 5s infinite}.mouth{position:absolute;width:28px;height:8px;border-bottom:3px solid #6ce7ff;bottom:13px;left:44px;border-radius:50%}.neck{position:absolute;top:157px;left:91px;width:48px;height:25px;background:#829dce;border-left:4px solid #d6e7ff;border-right:4px solid #d6e7ff}.bodybot{position:absolute;top:177px;left:40px;width:150px;height:86px;border-radius:24px 24px 34px 34px;background:linear-gradient(145deg,#e8f1ff,#809bc9);border:5px solid #dceaff;box-shadow:inset -10px -8px 0 #718bb8}.chest{position:absolute;top:18px;left:45px;width:52px;height:35px;border-radius:10px;background:#13233c;border:3px solid #91b9ff;display:grid;place-items:center;color:var(--cyan);font:9px var(--pixel);box-shadow:0 0 15px #4d8dff55}.arm{position:absolute;top:192px;width:27px;height:62px;border-radius:15px;background:#9bb4df;border:4px solid #dceaff}.arm.left{left:23px;transform:rotate(15deg)}.arm.right{right:23px;transform:rotate(-15deg)}.bubble{position:absolute;right:-38px;top:34px;background:#f2f7ff;color:#17243c;padding:14px 17px;border-radius:15px 15px 15px 3px;font-weight:700;font-size:14px;box-shadow:0 10px 30px #0005;animation:bob 3s ease-in-out infinite;white-space:nowrap}.bubble:after{content:"";position:absolute;bottom:-9px;left:12px;border-width:10px 10px 0 0;border-style:solid;border-color:#f2f7ff transparent transparent transparent}.float-card{position:absolute;background:#111d30d9;border:1px solid #668bc644;backdrop-filter:blur(12px);border-radius:12px;padding:12px 15px;font:11px var(--mono);color:#b9c9e5;box-shadow:0 12px 35px #0005}.float-card b{color:var(--green)}.card-code{left:0;top:78px;transform:rotate(-7deg);animation:bob 4s ease-in-out infinite}.card-xp{right:0;bottom:80px;transform:rotate(5deg);animation:bob 4.5s ease-in-out infinite reverse}.spark{position:absolute;color:var(--cyan);font-size:22px;animation:twinkle 2s infinite}.s1{top:65px;right:95px}.s2{bottom:60px;left:65px;animation-delay:1s}
+    .ticker{border-block:1px solid var(--line);background:#0d1320;overflow:hidden}.ticker-track{display:flex;gap:55px;width:max-content;padding:17px 0;animation:marquee 28s linear infinite;color:#8293b2;font:11px var(--mono);letter-spacing:.13em}.ticker-track span{display:flex;align-items:center;gap:12px}.ticker-track i{color:var(--blue);font-style:normal}
+    section.content{padding:110px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:42px}.kicker{font:10px var(--mono);letter-spacing:.16em;color:var(--blue);text-transform:uppercase}.section-head h2{font-size:clamp(34px,5vw,54px);letter-spacing:-.06em;margin:13px 0 0;line-height:1.05}.section-head p{max-width:390px;color:var(--muted);line-height:1.65;margin:0}.paths{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.path{background:linear-gradient(145deg,#121c2d,#0d1421);border:1px solid var(--line);border-radius:17px;padding:23px;min-height:260px;position:relative;overflow:hidden;transition:.25s}.path:hover{transform:translateY(-7px);border-color:#578fff88;box-shadow:0 18px 50px #0005}.path:after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;right:-70px;bottom:-80px;background:var(--glow);filter:blur(35px);opacity:.17}.lang-icon{width:48px;height:48px;border-radius:13px;background:var(--iconbg);display:grid;place-items:center;font:19px var(--mono);color:var(--iconcolor);margin-bottom:26px;border:1px solid var(--line)}.path h3{font-size:20px;margin:0 0 9px}.path p{font-size:13px;line-height:1.6;color:var(--muted);min-height:61px;margin:0 0 18px}.path-foot{display:flex;justify-content:space-between;align-items:center;color:#aab9d1;font:10px var(--mono);letter-spacing:.04em}.path-foot a{color:var(--cyan)}.tag{border:1px solid var(--line);padding:5px 8px;border-radius:5px}
+    .playground{background:linear-gradient(145deg,#101a2a,#0b111d);border:1px solid #6a91cc35;border-radius:20px;overflow:hidden;box-shadow:0 28px 80px #0005}.play-head{padding:18px 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:#121e30}.window-dots{display:flex;gap:7px}.window-dots i{width:8px;height:8px;border-radius:50%;background:#f07878}.window-dots i:nth-child(2){background:#f3c46d}.window-dots i:nth-child(3){background:#79dba2}.play-title{font:11px var(--mono);color:#9eafcb}.play-status{font:10px var(--mono);color:var(--green)}.play-body{display:grid;grid-template-columns:1fr 1fr;min-height:355px}.editor-pane,.output-pane{min-width:0}.pane-label{padding:14px 19px;border-bottom:1px solid var(--line);font:10px var(--mono);color:#8295b4;display:flex;justify-content:space-between}.tabs{display:flex;gap:5px}.tab{background:transparent;border:1px solid transparent;color:#8295b4;padding:6px 9px;border-radius:6px;font:10px var(--mono)}.tab.active{color:#dceaff;background:#223655;border-color:#4775b755}.code-area{width:100%;height:275px;resize:vertical;background:#0a101b;border:0;outline:0;color:#d7e6ff;padding:22px;font:13px/1.8 var(--mono);tab-size:2}.code-area:focus{box-shadow:inset 0 0 0 1px #4d8dff55}.output-pane{border-left:1px solid var(--line);display:flex;flex-direction:column}.output-content{padding:18px;flex:1;background:#f4f7fc;color:#1c2a40;min-height:275px;font:13px/1.6 var(--mono);overflow:auto}.output-content iframe{width:100%;height:235px;border:0;background:white;border-radius:5px}.output-placeholder{height:100%;min-height:230px;display:grid;place-items:center;text-align:center;color:#8492a8;font:12px var(--mono)}.play-actions{display:flex;align-items:center;justify-content:space-between;padding:14px 19px;border-top:1px solid var(--line);gap:12px}.hint{font:10px var(--mono);color:#7e91b1}.run-btn{background:var(--green);color:#10251b;border:0;border-radius:8px;padding:10px 16px;font-weight:700;font-size:12px;transition:.2s}.run-btn:hover{transform:translateY(-2px);box-shadow:0 7px 22px #8df5bb44}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.step{padding:25px;border:1px solid var(--line);border-radius:15px;background:#101827;position:relative}.step-num{font:11px var(--mono);color:var(--blue);margin-bottom:28px}.step h3{margin:0 0 9px;font-size:19px}.step p{margin:0;color:var(--muted);font-size:13px;line-height:1.7}.step:not(:last-child):after{content:"→";position:absolute;right:-19px;top:47%;color:#547fcb;font-size:22px;z-index:2}
+    .challenge{display:grid;grid-template-columns:1fr .8fr;gap:45px;align-items:center;padding:38px;border:1px solid #4d8dff40;border-radius:20px;background:radial-gradient(ellipse at 85% 50%,#1b448455,transparent 42%),#101827;overflow:hidden}.challenge h2{font-size:clamp(30px,4vw,43px);letter-spacing:-.06em;margin:12px 0}.challenge p{color:var(--muted);line-height:1.7;max-width:510px}.challenge-art{min-height:200px;display:grid;place-items:center;position:relative}.pixel-cube{width:112px;height:112px;background:linear-gradient(135deg,#76b5ff,#2864d8);transform:rotate(45deg);border:7px solid #a9d4ff;box-shadow:22px 22px 0 #163d87,0 0 55px #428aff77;animation:cubefloat 4s ease-in-out infinite;position:relative}.pixel-cube:after{content:"{ }";position:absolute;inset:0;display:grid;place-items:center;transform:rotate(-45deg);font:22px var(--pixel);color:white}.challenge-art:before,.challenge-art:after{content:"✦";position:absolute;color:var(--cyan);font-size:22px}.challenge-art:before{top:18px;left:30px}.challenge-art:after{bottom:25px;right:25px}
+    footer{border-top:1px solid var(--line);padding:35px 0;color:var(--muted);font-size:12px}.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}.footer-inner strong{color:#e5efff}.footer-links{display:flex;gap:22px}.footer-links a:hover{color:white}
+    .reveal{opacity:0;transform:translateY(25px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:translateY(0)}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -8px}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes blink{0%,90%,100%{transform:scale(1)}94%{transform:scale(.75)}}@keyframes eyeBlink{0%,46%,50%,100%{transform:scaleY(1)}48%{transform:scaleY(.12)}}@keyframes twinkle{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}@keyframes marquee{to{transform:translateX(-50%)}}@keyframes cubefloat{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(-12px)}}
+    @media(max-width:900px){.hero{gap:15px;min-height:610px}.stage{transform:scale(.85)}.paths{grid-template-columns:repeat(2,1fr)}.section-head{align-items:start;flex-direction:column}.challenge{gap:15px}}
+    @media(max-width:650px){.wrap{width:min(100% - 32px,520px)}.topbar{height:66px}.nav{display:none;position:absolute;top:66px;left:0;right:0;background:#0c1321;padding:20px 24px 25px;flex-direction:column;align-items:stretch;border-bottom:1px solid var(--line)}.nav.open{display:flex}.nav-cta{text-align:center}.menu-btn{display:block}.hero{grid-template-columns:1fr;padding:60px 0 30px;gap:0}.hero h1{font-size:65px}.pixel-word{font-size:29px}.hero-copy{font-size:16px}.stage{height:380px;transform:scale(.82);margin:-8px -30px 0}.orbit{width:330px;height:330px}.orbit.two{width:380px;height:380px}.card-code{left:-5px}.card-xp{right:-3px}.hero-actions{flex-wrap:wrap}.micro-proof{margin:25px 0 0;flex-wrap:wrap}.content{padding:75px 0!important}.paths{gap:10px}.path{padding:17px;min-height:245px}.path p{font-size:12px}.play-body{grid-template-columns:1fr}.output-pane{border-left:0;border-top:1px solid var(--line)}.code-area{height:220px}.output-content{min-height:210px}.steps{grid-template-columns:1fr}.step:not(:last-child):after{content:"↓";right:22px;top:auto;bottom:-22px}.challenge{grid-template-columns:1fr;padding:25px}.challenge-art{min-height:160px}.footer-inner{align-items:flex-start;flex-direction:column}.footer-links{flex-wrap:wrap}.play-title{display:none}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap" style="display:flex;align-items:center;justify-content:space-between">
+      <a class="brand" href="#home"><span class="brand-mark">C</span>codie<span style="color:var(--blue)">.</span></a>
+      <nav class="nav" id="nav"><a href="#paths">Learn</a><a href="#playground">Playground</a><a href="#how">How it works</a><a class="nav-cta" href="#playground">Start coding ↗</a></nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+  <main id="home">
+    <div class="wrap hero">
+      <div class="hero-text">
+        <div class="eyebrow">YOUR FRIENDLY CODE COMPANION</div>
+        <h1>MEET<span class="pixel-word">CODIE_</span></h1>
+        <p class="hero-copy">Big ideas. Tiny steps. <strong>Zero boring lectures.</strong><br>I'm Codie, your little robot buddy. Let's turn your curiosity into real code, one line at a time.</p>
+        <div class="hero-actions"><a class="primary" href="#paths">Let's learn <span>↗</span></a><a class="secondary" href="#playground">Try the playground</a></div>
+        <div class="micro-proof"><span><i class="live-dot"></i> ONLINE & READY</span><span>⌘ BUILT FOR BEGINNERS</span><span>✦ MADE FOR CURIOUS MINDS</span></div>
+      </div>
+      <div class="stage" aria-label="Codie, a friendly animated robot">
+        <div class="orbit"></div><div class="orbit two"></div><div class="planet"></div>
+        <span class="spark s1">✳</span><span class="spark s2">✦</span>
+        <div class="float-card card-code">print("hello, world!")<br><b>✓ looks good!</b></div>
+        <div class="float-card card-xp">✦ LEVEL UP<br><b>+ 100 XP</b></div>
+        <div class="robot-wrap">
+          <div class="bubble">Hi! I am Codie!</div>
+          <div class="robot">
+            <div class="antenna"></div><div class="ear left"></div><div class="ear right"></div>
+            <div class="head"><div class="face"><i class="eye"></i><i class="eye"></i><i class="mouth"></i></div></div>
+            <div class="neck"></div><div class="bodybot"><div class="chest">C_</div></div><div class="arm left"></div><div class="arm right"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ticker"><div class="ticker-track"><span><i>✳</i> PYTHON</span><span><i>✳</i> HTML</span><span><i>✳</i> CSS</span><span><i>✳</i> JAVASCRIPT</span><span><i>✳</i> BUILD COOL THINGS</span><span><i>✳</i> MAKE MISTAKES</span><span><i>✳</i> TRY AGAIN</span><span><i>✳</i> PYTHON</span><span><i>✳</i> HTML</span><span><i>✳</i> CSS</span><span><i>✳</i> JAVASCRIPT</span><span><i>✳</i> BUILD COOL THINGS</span><span><i>✳</i> MAKE MISTAKES</span><span><i>✳</i> TRY AGAIN</span></div></div>
+    <section class="content" id="paths"><div class="wrap">
+      <div class="section-head reveal"><div><div class="kicker">01 / PICK YOUR SUPERPOWER</div><h2>Choose your first<br><span style="color:var(--blue)">language.</span></h2></div><p>Every expert started with a blank screen. Pick a path, learn the basics, and build something that's yours.</p></div>
+      <div class="paths">
+        <article class="path reveal" style="--glow:#397fff;--iconbg:#17396a55;--iconcolor:#8bbaff"><div class="lang-icon">Py</div><h3>Python</h3><p>Make games, automate boring stuff, and teach your computer new tricks.</p><div class="path-foot"><span class="tag">BEGINNER FRIENDLY</span><a href="#playground" data-lang-link="python">Explore ↗</a></div></article>
+        <article class="path reveal" style="--glow:#ff9d45;--iconbg:#633b1e55;--iconcolor:#ffbd7b"><div class="lang-icon">5</div><h3>HTML</h3><p>Build the skeleton of websites. Your ideas deserve their own place on the internet.</p><div class="path-foot"><span class="tag">THE WEB</span><a href="#playground" data-lang-link="html">Explore ↗</a></div></article>
+        <article class="path reveal" style="--glow:#b77aff;--iconbg:#48256855;--iconcolor:#d4aaff"><div class="lang-icon">#</div><h3>CSS</h3><p>Give your websites color, style, personality, and those satisfying animations.</p><div class="path-foot"><span class="tag">MAKE IT POP</span><a href="#playground" data-lang-link="css">Explore ↗</a></div></article>
+        <article class="path reveal" style="--glow:#ffe16c;--iconbg:#5d501d55;--iconcolor:#ffe77e"><div class="lang-icon">JS</div><h3>JavaScript</h3><p>Make websites interactive. Buttons, games, and ideas that actually do stuff.</p><div class="path-foot"><span class="tag">MAKE IT WORK</span><a href="#playground" data-lang-link="javascript">Explore ↗</a></div></article>
+      </div>
+    </div></section>
+    <section class="content" id="playground" style="padding-top:20px"><div class="wrap">
+      <div class="section-head reveal"><div><div class="kicker">02 / NO INSTALLATION NEEDED</div><h2>Mess around.<br><span style="color:var(--cyan)">Make stuff.</span></h2></div><p>Don't just read about code. Change a line, press run, and see what happens. This little playground is all yours.</p></div>
+      <div class="playground reveal">
+        <div class="play-head"><div class="window-dots"><i></i><i></i><i></i></div><div class="play-title">CODIE / YOUR FIRST PROJECT</div><div class="play-status">● READY</div></div>
+        <div class="play-body">
+          <div class="editor-pane"><div class="pane-label"><span>EDITOR</span><div class="tabs"><button class="tab active" data-lang="html">HTML</button><button class="tab" data-lang="css">CSS</button><button class="tab" data-lang="javascript">JS</button><button class="tab" data-lang="python">PY</button></div></div><textarea class="code-area" id="code" spellcheck="false" aria-label="Code editor"><h1>Hello, world! 👋</h1>
+<p>I made my first website with Codie.</p>
+<button onclick="document.querySelector('p').textContent='You did it! 🚀'">Click me!</button></textarea><div class="play-actions"><span class="hint" id="editorHint">TIP: Change the heading, then hit run.</span><button class="run-btn" id="runBtn">▶ Run code</button></div></div>
+          <div class="output-pane"><div class="pane-label"><span>LIVE PREVIEW / OUTPUT</span><span id="outputType">BROWSER</span></div><div class="output-content" id="output"><div class="output-placeholder"><div><div style="font-size:28px;margin-bottom:10px">⌁</div>Your creation will appear here.<br>Go on, press run.</div></div></div></div>
+        </div>
+      </div>
+      <p style="color:var(--muted);font-size:11px;margin:13px 3px 0">Python runs in your browser using Pyodide. First launch may take a moment to load.</p>
+    </div></section>
+    <section class="content" id="how"><div class="wrap">
+      <div class="section-head reveal"><div><div class="kicker">03 / SMALL STEPS, BIG WINS</div><h2>How we roll.</h2></div><p>No pressure to know everything. Curiosity is enough to get started.</p></div>
+      <div class="steps">
+        <article class="step reveal"><div class="step-num">STEP_01 / EXPLORE</div><h3>Pick a path</h3><p>Choose a language that sounds fun. Codie will help you get comfortable with the basics.</p></article>
+        <article class="step reveal"><div class="step-num">STEP_02 / EXPERIMENT</div><h3>Break things (safely)</h3><p>Try examples, change the code, make mistakes, and learn why things work.</p></article>
+        <article class="step reveal"><div class="step-num">STEP_03 / CREATE</div><h3>Build your thing</h3><p>Use what you've learned to make a tiny project. Then make it bigger. Your call.</p></article>
+      </div>
+    </div></section>
+    <section class="content" style="padding-top:0"><div class="wrap"><div class="challenge reveal"><div><div class="kicker">YOUR NEXT ADVENTURE</div><h2>Ready to make<br>something awesome?</h2><p>Your first line of code is closer than you think. Pick a language, open the playground, and let curiosity do its thing.</p><a class="primary" href="#playground">Meet your editor ↗</a></div><div class="challenge-art"><div class="pixel-cube"></div></div></div></div></section>
+  </main>
+  <footer><div class="wrap footer-inner"><div><strong>codie<span style="color:var(--blue)">.</span></strong> &nbsp; Made for curious minds. ✦</div><div class="footer-links"><a href="#paths">Learn</a><a href="#playground">Playground</a><a href="#home">Back to top ↑</a></div><div>© 2026 CODIE PROJECT</div></div></footer>
+  <script>
+    const samples = {
+      html: '<h1>Hello, world! 👋</h1>\n<p>I made my first website with Codie.</p>\n<button onclick="document.querySelector(\'p\').textContent=\'You did it! 🚀\'">Click me!</button>',
+      css: 'body {\n  font-family: sans-serif;\n  background: #101a2b;\n  color: white;\n  text-align: center;\n  padding: 40px;\n}\nh1 { color: #6ce7ff; }\nbutton { padding: 12px 20px; border: 0; border-radius: 8px; background: #4d8dff; color: white; }',
+      javascript: 'const codie = "your new coding buddy";\nconsole.log("Hello, " + codie + "!");\nconsole.log("You just ran JavaScript 🚀");',
+      python: 'name = "Coder"\nprint("Hello, " + name + "!")\nprint("You just ran Python 🚀")'
+    };
+    const code = document.getElementById('code');
+    const output = document.getElementById('output');
+    const outputType = document.getElementById('outputType');
+    const hint = document.getElementById('editorHint');
+    let current = 'html';
+    let pyodidePromise = null;
+    function selectLang(lang) {
+      current = lang;
+      code.value = samples[lang];
+      document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.lang === lang));
+      outputType.textContent = lang === 'html' || lang === 'css' ? 'BROWSER' : lang.toUpperCase() + ' CONSOLE';
+      hint.textContent = ({html:'TIP: Change the heading, then hit run.',css:'TIP: Try changing the background color.',javascript:'TIP: Change the message inside console.log().',python:'TIP: Change the name variable and run again.'})[lang];
+      output.innerHTML = '<div class="output-placeholder"><div><div style="font-size:28px;margin-bottom:10px">⌁</div>Your ' + lang.toUpperCase() + ' output will appear here.<br>Press run when ready.</div></div>';
+    }
+    document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => selectLang(t.dataset.lang)));
+    document.querySelectorAll('[data-lang-link]').forEach(a => a.addEventListener('click', () => selectLang(a.dataset.langLink)));
+    document.getElementById('runBtn').addEventListener('click', async () => {
+      const source = code.value;
+      const btn = document.getElementById('runBtn');
+      btn.disabled = true; btn.textContent = 'Running...';
+      try {
+        if (current === 'html') {
+          output.innerHTML = '';
+          const frame = document.createElement('iframe');
+          frame.title = 'HTML live preview';
+          frame.setAttribute('sandbox','allow-scripts');
+          output.appendChild(frame);
+          frame.srcdoc = source;
+        } else if (current === 'css') {
+          output.innerHTML = '';
+          const frame = document.createElement('iframe');
+          frame.title = 'CSS live preview';
+          frame.setAttribute('sandbox','allow-scripts');
+          output.appendChild(frame);
+          frame.srcdoc = '<!doctype html><html><head><style>' + source.replace(/<\/style/gi,'') + '</style></head><body><h1>Style me!</h1><p>Your CSS is live.</p><button>Nice!</button></body></html>';
+        } else if (current === 'javascript') {
+          output.innerHTML = '';
+          const pre = document.createElement('pre');
+          pre.style.cssText = 'white-space:pre-wrap;margin:0;color:#17243c;font:13px/1.7 DM Mono,monospace';
+          output.appendChild(pre);
+          const logs = [];
+          const safeConsole = {log:(...args)=>logs.push(args.map(v=>typeof v === 'object' ? JSON.stringify(v) : String(v)).join(' ')),warn:(...args)=>logs.push('⚠ '+args.join(' ')),error:(...args)=>logs.push('✖ '+args.join(' '))};
+          try { new Function('console', '"use strict";\n' + source)(safeConsole); }
+          catch(e) { logs.push('Error: ' + e.message); }
+          pre.textContent = logs.join('\n') || 'Code ran successfully. No console output.';
+        } else {
+          output.innerHTML = '<div class="output-placeholder"><div>Loading Python engine...<br>This can take a few seconds on first run.</div></div>';
+          if (!pyodidePromise) {
+            pyodidePromise = (async () => {
+              if (!window.loadPyodide) {
+                await new Promise((resolve,reject) => {
+                  const s = document.createElement('script');
+                  s.src = 'https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js';
+                  s.onload = resolve; s.onerror = reject; document.head.appendChild(s);
+                });
+              }
+              return await loadPyodide();
+            })();
+          }
+          const pyodide = await pyodidePromise;
+          await pyodide.runPythonAsync('import sys, io\n_buffer = io.StringIO()\nsys.stdout = _buffer\nsys.stderr = _buffer');
+          await pyodide.runPythonAsync(source);
+          const result = await pyodide.runPythonAsync('_buffer.getvalue()');
+          output.innerHTML = '';
+          const pre = document.createElement('pre');
+          pre.style.cssText = 'white-space:pre-wrap;margin:0;color:#17243c;font:13px/1.7 DM Mono,monospace';
+          pre.textContent = result || 'Python ran successfully. No output. Add print() to display something.';
+          output.appendChild(pre);
+        }
+      } catch(e) {
+        output.innerHTML = '';
+        const pre = document.createElement('pre');
+        pre.style.cssText = 'white-space:pre-wrap;margin:0;color:#b42318;font:13px/1.7 DM Mono,monospace';
+        pre.textContent = 'Could not run this code: ' + e.message;
+        output.appendChild(pre);
+      } finally { btn.disabled = false; btn.textContent = '▶ Run code'; }
+    });
+    document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('nav').classList.toggle('open'));
+    document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>document.getElementById('nav').classList.remove('open')));
+    const observer = new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  </script>
+</body>
+</html>

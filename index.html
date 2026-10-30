@@ -120,6 +120,23 @@ body.course-mode .course-back{margin-bottom:14px}
   body.course-mode .lesson{overflow-y:auto}
 }
 
+
+/* Lock the entire course viewport, including lesson panes */
+body.course-mode,
+body.course-mode html{overflow:hidden!important}
+body.course-mode #home,
+body.course-mode #classroom,
+body.course-mode #classroom>.wrap,
+body.course-mode #classroom .classroom{
+  overflow:hidden!important;
+}
+body.course-mode .sidebar,
+body.course-mode .lesson{
+  overflow:hidden!important;
+  overscroll-behavior:none;
+}
+body.course-mode .course-back{display:none!important}
+
 </style>
 </head>
 <body>

@@ -20,6 +20,45 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
 @media(max-width:850px){.courses{grid-template-columns:repeat(2,1fr)}.hero{min-height:520px}.classroom{grid-template-columns:230px 1fr}.sidebar{padding:14px}.lesson{padding:22px}}
 @media(max-width:620px){.wrap{width:calc(100% - 30px)}header{height:64px}nav{display:none;position:absolute;top:64px;left:0;right:0;padding:20px;background:#0d1523;flex-direction:column;align-items:stretch}nav.open{display:flex}.menu{display:block}.hero{grid-template-columns:1fr;padding:55px 0 25px}.hero h1{font-size:66px}.pixel{font-size:28px}.hero p{font-size:15px}.robot-stage{height:330px;transform:scale(.82);margin:-10px -20px}.sectionhead{display:block}.sectionhead p{margin-top:15px}.courses{gap:9px}.course{padding:15px}.course p{min-height:90px}.classroom{grid-template-columns:1fr}.sidebar{border-right:0;border-bottom:1px solid var(--line)}.lessonlist{grid-template-columns:1fr 1fr}.lesson{padding:19px}.answers{grid-template-columns:1fr}.steps{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+
+/* CODIE MOTION PACK */
+:root{--mx:50%;--my:30%}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(500px circle at var(--mx) var(--my),#397de51c,transparent 70%);transition:background .15s}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:8;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E")}
+#scrollProgress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--blue),var(--cyan),var(--green));z-index:30;box-shadow:0 0 12px var(--cyan)}
+.hero{position:relative;isolation:isolate}.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(2px);pointer-events:none;z-index:-1}.hero:before{width:230px;height:230px;right:8%;top:15%;background:#3679ff13;animation:blobDrift 9s ease-in-out infinite alternate}.hero:after{width:150px;height:150px;left:24%;bottom:4%;background:#75e6ff0d;animation:blobDrift 7s ease-in-out infinite alternate-reverse}
+.brand b{display:inline-block;animation:brandBlink 2s steps(2,end) infinite}
+.robot{transform-style:preserve-3d;transition:filter .3s}.robot:hover{filter:drop-shadow(0 25px 30px #367dff66)}.head{animation:headBob 3.8s ease-in-out infinite;transform-origin:50% 90%}.body{animation:bodyBob 3.8s ease-in-out infinite}.antenna:after{animation:antennaGlow 1.8s ease-in-out infinite alternate}.mouth{animation:talk 5s ease-in-out infinite}.face{overflow:hidden}.eye{transition:transform .12s ease-out}.bubble{animation:bubbleFloat 3s ease-in-out infinite;box-shadow:0 8px 30px #0003}.bubble:after{content:"";position:absolute;left:18px;bottom:-7px;border-width:8px 8px 0 0;border-style:solid;border-color:white transparent transparent transparent}
+.orbit:before,.orbit:after{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:var(--cyan);box-shadow:0 0 18px var(--cyan);top:14%;left:13%}.orbit:after{width:6px;height:6px;background:var(--blue);box-shadow:0 0 16px var(--blue);top:auto;left:auto;right:10%;bottom:18%}
+.float{animation:floatTag 4s ease-in-out infinite}.float.two{animation-delay:-2s}
+.course{position:relative;overflow:hidden;transform-style:preserve-3d;will-change:transform}.course:before{content:"";position:absolute;inset:-1px;background:linear-gradient(115deg,transparent 25%,#75e6ff22 48%,transparent 70%);transform:translateX(-120%);transition:transform .7s;pointer-events:none}.course:hover:before{transform:translateX(120%)}.course:hover .icon{transform:translateY(-4px) rotate(-7deg);background:#315b91;box-shadow:0 8px 24px #5794ff35}.icon{transition:transform .35s cubic-bezier(.2,.8,.2,1),background .3s,box-shadow .3s}
+.primary,.navbtn,.secondary,.answer,.lessonlink,.course button{transition:transform .2s,box-shadow .25s,border-color .25s,background .25s}.primary:hover,.navbtn:hover{transform:translateY(-3px);box-shadow:0 9px 24px #5794ff44}.primary:active,.navbtn:active,.secondary:active{transform:scale(.96)}.secondary:hover{border-color:var(--cyan);background:#75e6ff0b}.answer:hover{transform:translateY(-2px);box-shadow:0 5px 16px #0003}.lessonlink:hover{background:#192b43;transform:translateX(3px)}
+.sectionhead h2{background:linear-gradient(100deg,#edf4ff 15%,#91baff 48%,#75e6ff 75%,#edf4ff);background-size:220% auto;background-clip:text;-webkit-background-clip:text;color:transparent;animation:titleShimmer 8s linear infinite}
+.kicker{display:inline-flex;align-items:center;gap:9px}.kicker:before{content:"";width:22px;height:1px;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+.reveal{transform:translateY(35px) scale(.985);filter:blur(5px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1),filter .8s}.reveal.visible{filter:blur(0);transform:translateY(0) scale(1)}
+.course.reveal:nth-child(2),.step.reveal:nth-child(2){transition-delay:.1s}.course.reveal:nth-child(3),.step.reveal:nth-child(3){transition-delay:.2s}.course.reveal:nth-child(4){transition-delay:.3s}
+.classroom{box-shadow:0 25px 80px #0002;transition:box-shadow .4s,border-color .4s}.classroom:hover{border-color:#5794ff55;box-shadow:0 25px 90px #174c9630}
+.lesson h3{animation:lessonEnter .45s both}.example,.quiz,.tip{animation:softEnter .55s both}.quiz{animation-delay:.08s}.tip{animation-delay:.04s}
+.track span{position:relative;overflow:hidden}.track span:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,#ffffff88,transparent);transform:translateX(-100%);animation:progressShine 2.5s infinite}
+.step{transition:transform .3s,border-color .3s,background .3s}.step:hover{transform:translateY(-7px);border-color:#5794ff66;background:#17253b}
+footer .foot strong{transition:color .3s}footer:hover .foot strong{color:var(--cyan)}
+.spark{position:fixed;z-index:40;pointer-events:none;width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan);animation:sparkFly .65s ease-out forwards}
+@keyframes headBob{0%,100%{transform:rotate(0) translateY(0)}25%{transform:rotate(-2deg) translateY(-3px)}75%{transform:rotate(2deg) translateY(-2px)}}
+@keyframes bodyBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes talk{0%,42%,48%,100%{transform:scaleX(1);height:7px}44%,46%{transform:scaleX(1.25);height:12px}}
+@keyframes antennaGlow{to{box-shadow:0 0 28px 8px #75e6ff66;transform:scale(1.12)}}
+@keyframes bubbleFloat{50%{transform:translateY(-8px) rotate(1deg)}}
+@keyframes floatTag{50%{transform:translateY(-11px) rotate(-2deg)}}
+@keyframes blobDrift{to{transform:translate(35px,-25px) scale(1.2)}}
+@keyframes brandBlink{50%{opacity:.35}}
+@keyframes titleShimmer{to{background-position:220% center}}
+@keyframes lessonEnter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes softEnter{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+@keyframes progressShine{to{transform:translateX(100%)}}
+@keyframes sparkFly{to{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.1)}}
+@media(max-width:620px){.hero:before{right:0}.sectionhead h2{background-size:180% auto}}
+@media(prefers-reduced-motion:reduce){body:before,body:after{display:none}#scrollProgress{display:none}.course,.step,.robot,.head,.body,.bubble,.float,.orbit,.eye,.mouth,.antenna:after,.sectionhead h2{animation:none!important;transition:none!important}.reveal{filter:none;opacity:1;transform:none}}
+
 </style>
 </head>
 <body>
@@ -85,4 +124,30 @@ function answer(i){if(answered)return;answered=true;const right=courses[course].
 function setCourse(c){course=c;index=0;render()}
 $('courseSelect').onchange=e=>setCourse(e.target.value);document.querySelectorAll('[data-course]').forEach(b=>b.onclick=()=>{setCourse(b.dataset.course);location.hash='classroom'});$('complete').onclick=()=>{done[course]=done[course]||[];if(!done[course].includes(index))done[course].push(index);localStorage.setItem('codie-progress',JSON.stringify(done));render()};$('prev').onclick=()=>{if(index>0){index--;render()}};$('next').onclick=()=>{if(index<courses[course].lessons.length-1){index++;render()}};$('menu').onclick=()=>$('nav').classList.toggle('open');document.querySelectorAll('nav a').forEach(a=>a.onclick=()=>$('nav').classList.remove('open'));render();
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.1});document.querySelectorAll('.reveal').forEach(e=>observer.observe(e));
+
+// Motion details: pointer glow, gentle eye tracking, scroll meter and tiny click sparks.
+const motionBar=document.createElement('div');motionBar.id='scrollProgress';document.body.appendChild(motionBar);
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!reduceMotion){
+ window.addEventListener('pointermove',e=>{
+  document.documentElement.style.setProperty('--mx',e.clientX+'px');
+  document.documentElement.style.setProperty('--my',e.clientY+'px');
+  const stage=document.querySelector('.robot-stage');
+  if(stage && e.pointerType!=='touch'){
+   const r=stage.getBoundingClientRect(),dx=(e.clientX-(r.left+r.width/2))/r.width,dy=(e.clientY-(r.top+r.height/2))/r.height;
+   document.querySelectorAll('.eye').forEach(eye=>eye.style.transform='translate('+Math.max(-4,Math.min(4,dx*8))+'px,'+Math.max(-3,Math.min(3,dy*6))+'px)');
+  }
+ },{passive:true});
+ window.addEventListener('pointerout',e=>{if(!e.relatedTarget)document.querySelectorAll('.eye').forEach(eye=>eye.style.transform='')});
+ window.addEventListener('scroll',()=>{const max=document.documentElement.scrollHeight-innerHeight;motionBar.style.width=(max>0?scrollY/max*100:0)+'%'},{passive:true});
+ document.addEventListener('click',e=>{
+  if(!e.target.closest('button,a'))return;
+  for(let i=0;i<5;i++){const s=document.createElement('i');s.className='spark';s.style.left=e.clientX+'px';s.style.top=e.clientY+'px';const a=Math.PI*2*i/5;s.style.setProperty('--dx',Math.cos(a)*25+'px');s.style.setProperty('--dy',Math.sin(a)*25+'px');document.body.appendChild(s);s.addEventListener('animationend',()=>s.remove(),{once:true})}
+ });
+ document.querySelectorAll('.course').forEach(card=>{
+  card.addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform='perspective(700px) rotateY('+(x*7)+'deg) rotateX('+(-y*7)+'deg) translateY(-5px)'});
+  card.addEventListener('pointerleave',()=>card.style.transform='');
+ });
+}
+
 </script></body></html>

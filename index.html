@@ -247,39 +247,56 @@ body:before,body:after{display:none!important}
   body.course-mode .course-back{display:block!important}
 }
 
-/* One Codie: the original hero robot glides between both screen edges. */
+/* One Codie: the original hero robot glides smoothly across the viewport. */
+body.codie-is-docked .robot-stage{transform:none!important}
 .robot-stage .robot.codie-docked{
-  position:fixed;z-index:12;top:39vh;left:22px;right:auto;
+  position:fixed;z-index:20;top:39vh;left:22px;right:auto;
   transform:scale(.56);transform-origin:top left;
-  animation:none;filter:drop-shadow(0 18px 24px #0009);
-  transition:top .75s cubic-bezier(.2,.8,.2,1),left .85s cubic-bezier(.2,.8,.2,1),transform .75s cubic-bezier(.2,.8,.2,1);
+  animation:codieHover 2.1s ease-in-out infinite;
+  filter:drop-shadow(0 18px 24px #0009);
+  transition:top 1.05s cubic-bezier(.22,.75,.2,1),left 1.15s cubic-bezier(.22,.75,.2,1),transform 1.05s cubic-bezier(.22,.75,.2,1),filter .5s;
+  will-change:top,left,transform;
 }
-.robot-stage .robot.codie-docked.codie-right{
-  left:calc(100vw - 224px);transform-origin:top left;
+.robot-stage .robot.codie-docked.codie-right{left:calc(100vw - 134px)}
+@keyframes codieHover{
+  0%,100%{margin-top:0;filter:drop-shadow(0 18px 24px #0009)}
+  50%{margin-top:-13px;filter:drop-shadow(0 27px 25px #168dff55)}
 }
 .codie-jet{
-  position:absolute;left:50%;bottom:-35px;width:90px;height:48px;
+  position:absolute;left:50%;bottom:-43px;width:100px;height:65px;
   transform:translateX(-50%);opacity:0;pointer-events:none;
+  filter:drop-shadow(0 0 12px #39baff);
+}
+.codie-jet:before{
+  content:"";position:absolute;left:50%;top:-5px;width:34px;height:48px;
+  transform:translateX(-50%);
+  background:linear-gradient(180deg,#9beaff99,#39aaff33 55%,transparent);
+  filter:blur(8px);border-radius:50%;opacity:0;
 }
 .codie-jet i{
-  position:absolute;top:0;width:12px;height:12px;border-radius:50%;
-  background:#55caff;box-shadow:0 0 12px 4px #38aaff99;
+  position:absolute;top:0;width:11px;height:11px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#e6fbff,#59d5ff 48%,#168bff);
+  box-shadow:0 0 10px 3px #38aaff99,0 0 22px #38aaff66;
   opacity:0;animation:none;
 }
-.codie-jet i:nth-child(1){left:20px;animation-delay:0s}
-.codie-jet i:nth-child(2){left:39px;width:9px;height:9px;animation-delay:.13s}
-.codie-jet i:nth-child(3){left:57px;width:7px;height:7px;animation-delay:.26s}
-.codie-moving .codie-jet{opacity:1}
-.codie-moving .codie-jet i{animation:jetBubble .65s ease-out infinite}
+.codie-jet i:nth-child(1){left:13px;animation-delay:0s}
+.codie-jet i:nth-child(2){left:31px;width:8px;height:8px;animation-delay:.12s}
+.codie-jet i:nth-child(3){left:49px;width:12px;height:12px;animation-delay:.24s}
+.codie-jet i:nth-child(4){left:67px;width:7px;height:7px;animation-delay:.08s}
+.codie-jet i:nth-child(5){left:23px;width:6px;height:6px;animation-delay:.3s}
+.codie-jet i:nth-child(6){left:59px;width:6px;height:6px;animation-delay:.38s}
+.codie-moving .codie-jet:before{opacity:1;animation:jetGlow .55s ease-in-out infinite alternate}
+.codie-moving .codie-jet i{animation:jetBubble .72s ease-out infinite}
+@keyframes jetGlow{to{opacity:.8;transform:translateX(-50%) scaleY(1.18)}}
 @keyframes jetBubble{
-  0%{opacity:0;transform:translateY(-4px) scale(.5)}
-  25%{opacity:1}
-  100%{opacity:0;transform:translateY(42px) scale(1.35)}
+  0%{opacity:0;transform:translateY(-3px) scale(.35)}
+  20%{opacity:1}
+  100%{opacity:0;transform:translateY(58px) scale(1.5)}
 }
 @media(max-width:620px){
   .robot-stage .robot.codie-docked{top:auto;bottom:20px;left:10px;right:auto;transform:scale(.34);transform-origin:bottom left}
-  .robot-stage .robot.codie-docked.codie-right{left:calc(100vw - 90px);transform-origin:bottom left}
-  .codie-jet{bottom:-28px;transform:translateX(-50%) scale(.8)}
+  .robot-stage .robot.codie-docked.codie-right{left:calc(100vw - 78px)}
+  .codie-jet{bottom:-34px;transform:translateX(-50%) scale(.75)}
 }
 #lessonTip{display:flex;align-items:center;gap:14px;background:transparent;border:0;padding:0;margin:18px 0;min-height:100px}
 .tip-robot{position:relative;flex:0 0 82px;width:82px;height:100px;overflow:visible}
@@ -476,7 +493,7 @@ document.querySelectorAll('[data-course]').forEach(b=>b.onclick=()=>setCourse(b.
 window.addEventListener('hashchange',routeFromHash);
 document.querySelectorAll('nav a[href="#courses"]').forEach(a=>a.addEventListener('click',()=>{history.pushState(null,'',location.pathname+location.search);showHome()}));$('complete').onclick=()=>{done[course]=done[course]||[];if(!done[course].includes(index))done[course].push(index);localStorage.setItem('codie-progress',JSON.stringify(done));render()};$('prev').onclick=()=>{if(index>0){index--;render()}};$('next').onclick=()=>{if(index<courses[course].lessons.length-1){index++;render()}};$('menu').onclick=()=>$('nav').classList.toggle('open');document.querySelectorAll('nav a').forEach(a=>a.onclick=()=>$('nav').classList.remove('open'));applyLanguage();render();routeFromHash();
 
-/* The hero robot itself becomes the floating companion. No duplicate robot. */
+/* The same original hero robot becomes Codie's floating companion. */
 const heroCodie=document.querySelector('.robot-stage .robot');
 let codieDocked=false;
 let codieSide='left';
@@ -484,20 +501,31 @@ let codieMoveTimer=null;
 if(heroCodie){
  const jet=document.createElement('div');
  jet.className='codie-jet';
- for(let i=0;i<3;i++)jet.appendChild(document.createElement('i'));
+ for(let i=0;i<6;i++)jet.appendChild(document.createElement('i'));
  heroCodie.appendChild(jet);
 }
+function playCodieThrusters(){
+ heroCodie.classList.add('codie-moving');
+ clearTimeout(codieMoveTimer);
+ codieMoveTimer=setTimeout(()=>heroCodie.classList.remove('codie-moving'),1250);
+}
 function updateScrollCodie(){
- const y=window.scrollY||0;
  if(!heroCodie)return;
+ const y=window.scrollY||0;
  if(document.body.classList.contains('course-mode')||y<180){
   if(codieDocked){
    heroCodie.classList.remove('codie-docked','codie-right','codie-moving');
-   codieDocked=false;codieSide='left';
+   document.body.classList.remove('codie-is-docked');
+   heroCodie.style.top='';
+   heroCodie.style.left='';
+   heroCodie.style.bottom='';
+   codieDocked=false;
+   codieSide='left';
   }
   return;
  }
- const later=y>=document.getElementById('how').offsetTop-Math.round(innerHeight*.55);
+ const howSection=document.getElementById('how');
+ const later=howSection && y>=howSection.offsetTop-Math.round(innerHeight*.55);
  const nextSide=later?'right':'left';
  if(!codieDocked){
   const rect=heroCodie.getBoundingClientRect();
@@ -506,20 +534,22 @@ function updateScrollCodie(){
   heroCodie.style.left=rect.left+'px';
   heroCodie.style.bottom='auto';
   heroCodie.classList.add('codie-docked');
+  document.body.classList.add('codie-is-docked');
   void heroCodie.offsetWidth;
   heroCodie.style.transition='';
   codieDocked=true;
   requestAnimationFrame(()=>{
-   heroCodie.classList.toggle('codie-right',nextSide==='right');
-   heroCodie.classList.add('codie-moving');
-   clearTimeout(codieMoveTimer);
-   codieMoveTimer=setTimeout(()=>heroCodie.classList.remove('codie-moving'),950);
+   heroCodie.style.top='';
+   heroCodie.style.left='';
+   heroCodie.style.bottom='';
+   requestAnimationFrame(()=>{
+    heroCodie.classList.toggle('codie-right',nextSide==='right');
+    playCodieThrusters();
+   });
   });
  }else if(nextSide!==codieSide){
   heroCodie.classList.toggle('codie-right',nextSide==='right');
-  heroCodie.classList.add('codie-moving');
-  clearTimeout(codieMoveTimer);
-  codieMoveTimer=setTimeout(()=>heroCodie.classList.remove('codie-moving'),950);
+  playCodieThrusters();
  }
  codieSide=nextSide;
 }

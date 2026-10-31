@@ -250,17 +250,18 @@ body:before,body:after{display:none!important}
 /* One Codie: the original hero robot glides smoothly across the viewport. */
 body.codie-is-docked .robot-stage{transform:none!important}
 .robot-stage .robot.codie-docked{
+  --codie-scale:.56;
   position:fixed;z-index:20;top:39vh;left:22px;right:auto;
-  transform:scale(.56);transform-origin:top left;
+  transform:scale(var(--codie-scale));transform-origin:top left;
   animation:codieHover 2.1s ease-in-out infinite;
   filter:drop-shadow(0 18px 24px #0009);
-  transition:top 1.05s cubic-bezier(.22,.75,.2,1),left 1.15s cubic-bezier(.22,.75,.2,1),transform 1.05s cubic-bezier(.22,.75,.2,1),filter .5s;
+  transition:top 1.05s cubic-bezier(.22,.75,.2,1),left 1.15s cubic-bezier(.22,.75,.2,1),transform .9s cubic-bezier(.22,.75,.2,1),filter .5s;
   will-change:top,left,transform;
 }
 .robot-stage .robot.codie-docked.codie-right{left:calc(100vw - 134px)}
 @keyframes codieHover{
-  0%,100%{margin-top:0;translate:-5px 0;rotate:-1.8deg;filter:drop-shadow(0 18px 24px #0009)}
-  50%{margin-top:-13px;translate:5px 0;rotate:1.8deg;filter:drop-shadow(0 22px 20px #0008)}
+  0%,100%{transform:translateX(-11px) rotate(-3deg) scale(var(--codie-scale));filter:drop-shadow(0 18px 24px #0009)}
+  50%{transform:translateX(11px) rotate(3deg) scale(var(--codie-scale));filter:drop-shadow(0 22px 20px #0008)}
 }
 .codie-jet{
   position:absolute;left:50%;bottom:-43px;width:100px;height:65px;
@@ -299,7 +300,7 @@ body.codie-is-docked .robot-stage{transform:none!important}
   100%{opacity:0;transform:translateY(58px) scale(1.5)}
 }
 @media(max-width:620px){
-  .robot-stage .robot.codie-docked{top:auto;bottom:20px;left:10px;right:auto;transform:scale(.34);transform-origin:bottom left}
+  .robot-stage .robot.codie-docked{--codie-scale:.34;top:auto;bottom:20px;left:10px;right:auto;transform-origin:bottom left}
   .robot-stage .robot.codie-docked.codie-right{left:calc(100vw - 78px)}
   .codie-jet{bottom:-34px;transform:translateX(-50%) scale(.75)}
 }
@@ -318,8 +319,8 @@ body.codie-is-docked .robot-stage{transform:none!important}
 }
 .tip-speech strong{display:block;margin-bottom:4px;color:var(--green);font:10px var(--mono);letter-spacing:.1em}
 @media(max-width:620px){
-  .robot-stage .robot.codie-docked{top:auto;bottom:16px;left:8px;right:auto;transform:scale(.34);transform-origin:bottom left}
-  .robot-stage .robot.codie-docked.codie-right{left:auto;right:8px;transform:scale(.34);transform-origin:bottom right}
+  .robot-stage .robot.codie-docked{--codie-scale:.34;top:auto;bottom:16px;left:8px;right:auto;transform-origin:bottom left}
+  .robot-stage .robot.codie-docked.codie-right{left:auto;right:8px;transform-origin:bottom right}
   .scroll-codie{top:auto;bottom:105px;left:86px;right:auto;width:min(190px,calc(100vw - 105px))}
   .scroll-codie.side-right{left:auto;right:86px}
   .scroll-codie-bubble{font-size:10px;padding:9px 11px}

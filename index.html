@@ -300,7 +300,7 @@ body.codie-is-docked .robot-stage{transform:none!important}
 }
 #lessonTip{display:flex;align-items:center;gap:14px;background:transparent;border:0;padding:0;margin:18px 0;min-height:100px}
 .tip-robot{position:relative;flex:0 0 82px;width:82px;height:100px;overflow:visible}
-.tip-robot .robot{position:absolute;top:0;left:0;transform:scale(.4);transform-origin:top left}
+.tip-robot .robot{display:block!important;position:absolute!important;top:0!important;left:0!important;right:auto!important;bottom:auto!important;width:200px!important;height:240px!important;transform:scale(.4)!important;transform-origin:top left!important;animation:float 4s ease-in-out infinite!important;visibility:visible!important;opacity:1!important;filter:drop-shadow(0 8px 10px #0006)!important}
 .tip-speech{
   position:relative;flex:1;min-width:0;padding:14px 16px;
   background:#172e30;border:1px solid #8df5bb55;border-left:3px solid var(--green);
@@ -463,8 +463,15 @@ $('languageSelect').addEventListener('change',e=>{language=e.target.value;localS
 function makeCodieRobot(className){
  const holder=document.createElement('div');
  holder.className=className;
- const robot=document.querySelector('.robot-stage .robot');
- if(robot)holder.appendChild(robot.cloneNode(true));
+ const source=document.querySelector('.robot-stage .robot');
+ if(source){
+  const robot=source.cloneNode(true);
+  robot.className='robot';
+  robot.removeAttribute('style');
+  robot.querySelectorAll('.codie-jet').forEach(jet=>jet.remove());
+  robot.style.cssText='position:absolute;top:0;left:0;right:auto;bottom:auto;transform:scale(.4);transform-origin:top left;animation:float 4s ease-in-out infinite;';
+  holder.appendChild(robot);
+ }
  return holder;
 }
 function setLessonTip(message,label){

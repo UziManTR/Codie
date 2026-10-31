@@ -490,6 +490,7 @@ function updateScrollCodie(){
 }
 window.addEventListener('scroll',updateScrollCodie,{passive:true});
 window.addEventListener('resize',updateScrollCodie);
+updateScrollCodie();
 
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.1});document.querySelectorAll('.reveal').forEach(e=>observer.observe(e));
 
@@ -508,7 +509,6 @@ if(!reduceMotion){
  },{passive:true});
 }
 function routeTransition(){
- if(typeof updateScrollCodie==='function')updateScrollCodie();
  if(reduceMotion)return;
  const main=$('home');
  main.classList.remove('route-enter');

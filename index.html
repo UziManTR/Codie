@@ -247,28 +247,35 @@ body:before,body:after{display:none!important}
   body.course-mode .course-back{display:block!important}
 }
 
-/* Codie companion: alternates sides while scrolling through the home page. */
-.scroll-codie{
-  position:fixed;z-index:6;top:54%;width:190px;height:250px;
-  pointer-events:none;opacity:0;visibility:hidden;
-  transition:opacity .35s ease,transform .55s cubic-bezier(.2,.8,.2,1),left .45s,right .45s;
+/* The original hero robot docks to the screen edge as the page scrolls. */
+.robot-stage .robot.codie-docked{
+  position:fixed;z-index:12;top:42vh;left:22px;right:auto;
+  transform:scale(.58);transform-origin:top left;
+  animation:none;filter:drop-shadow(0 18px 24px #0009);
+  transition:top .7s cubic-bezier(.2,.8,.2,1),left .7s cubic-bezier(.2,.8,.2,1),right .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1);
 }
-.scroll-codie.visible{opacity:1;visibility:visible;transform:translateY(-50%) translateX(0)}
-.scroll-codie.side-left{left:-48px;right:auto;transform:translateY(-50%) translateX(-34px)}
-.scroll-codie.side-right{right:-48px;left:auto;transform:translateY(-50%) translateX(34px)}
-.scroll-codie.side-left.visible,.scroll-codie.side-right.visible{transform:translateY(-50%) translateX(0)}
-.scroll-codie .robot{position:absolute;left:0;top:10px;transform:scale(.72);transform-origin:top left}
+.robot-stage .robot.codie-docked.codie-right{
+  left:auto;right:22px;transform:scale(.58);transform-origin:top right;
+}
+.scroll-codie{
+  position:fixed;z-index:13;top:35vh;left:125px;right:auto;
+  width:min(210px,calc(100vw - 150px));pointer-events:none;
+  opacity:0;visibility:hidden;transform:translateY(12px) scale(.96);
+  transition:opacity .35s ease,transform .5s cubic-bezier(.2,.8,.2,1),left .65s,right .65s;
+}
+.scroll-codie.visible{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+.scroll-codie.side-right{left:auto;right:125px}
 .scroll-codie-bubble{
-  position:absolute;top:-58px;left:18px;max-width:190px;
-  padding:11px 13px;border-radius:13px;background:#fff;color:#17243c;
-  font-size:12px;line-height:1.45;font-weight:700;box-shadow:0 8px 26px #0004;
+  position:relative;padding:12px 14px;border-radius:13px;background:#fff;color:#17243c;
+  font-size:12px;line-height:1.5;font-weight:700;box-shadow:0 8px 26px #0005;
 }
 .scroll-codie-bubble:after{
-  content:"";position:absolute;left:20px;bottom:-7px;border-width:8px 8px 0 0;
-  border-style:solid;border-color:#fff transparent transparent transparent;
+  content:"";position:absolute;left:-7px;top:22px;border-width:8px 8px 8px 0;
+  border-style:solid;border-color:transparent #fff transparent transparent;
 }
-.scroll-codie.side-right .scroll-codie-bubble{left:auto;right:0}
-.scroll-codie.side-right .scroll-codie-bubble:after{left:auto;right:20px}
+.scroll-codie.side-right .scroll-codie-bubble:after{
+  left:auto;right:-7px;border-width:8px 0 8px 8px;border-color:transparent transparent transparent #fff;
+}
 #lessonTip{display:flex;align-items:center;gap:14px;background:transparent;border:0;padding:0;margin:18px 0;min-height:100px}
 .tip-robot{position:relative;flex:0 0 82px;width:82px;height:100px;overflow:visible}
 .tip-robot .robot{position:absolute;top:0;left:0;transform:scale(.4);transform-origin:top left}
@@ -284,12 +291,13 @@ body:before,body:after{display:none!important}
 }
 .tip-speech strong{display:block;margin-bottom:4px;color:var(--green);font:10px var(--mono);letter-spacing:.1em}
 @media(max-width:620px){
-  .scroll-codie{top:auto;bottom:10px;width:110px;height:145px;transform:translateY(20px);z-index:5}
-  .scroll-codie.side-left,.scroll-codie.side-right{left:auto;right:4px;transform:translateY(20px)}
-  .scroll-codie.visible,.scroll-codie.side-left.visible,.scroll-codie.side-right.visible{transform:translateY(0)}
-  .scroll-codie .robot{transform:scale(.43)}
-  .scroll-codie-bubble{top:-42px;left:-70px;right:auto;max-width:150px;font-size:10px;padding:8px 10px}
-  .scroll-codie.side-right .scroll-codie-bubble{left:-70px;right:auto}
+  .robot-stage .robot.codie-docked{top:auto;bottom:16px;left:8px;right:auto;transform:scale(.34);transform-origin:bottom left}
+  .robot-stage .robot.codie-docked.codie-right{left:auto;right:8px;transform:scale(.34);transform-origin:bottom right}
+  .scroll-codie{top:auto;bottom:105px;left:86px;right:auto;width:min(190px,calc(100vw - 105px))}
+  .scroll-codie.side-right{left:auto;right:86px}
+  .scroll-codie-bubble{font-size:10px;padding:9px 11px}
+  .scroll-codie-bubble:after{top:auto;bottom:-7px;left:18px;border-width:8px 8px 0 0;border-color:#fff transparent transparent transparent}
+  .scroll-codie.side-right .scroll-codie-bubble:after{left:auto;right:18px;border-width:8px 8px 0 0;border-color:#fff transparent transparent transparent}
   #lessonTip{gap:8px}
   .tip-robot{flex-basis:62px;width:62px;height:78px}
   .tip-robot .robot{transform:scale(.3)}
@@ -463,24 +471,36 @@ document.querySelectorAll('[data-course]').forEach(b=>b.onclick=()=>setCourse(b.
 window.addEventListener('hashchange',routeFromHash);
 document.querySelectorAll('nav a[href="#courses"]').forEach(a=>a.addEventListener('click',()=>{history.pushState(null,'',location.pathname+location.search);showHome()}));$('complete').onclick=()=>{done[course]=done[course]||[];if(!done[course].includes(index))done[course].push(index);localStorage.setItem('codie-progress',JSON.stringify(done));render()};$('prev').onclick=()=>{if(index>0){index--;render()}};$('next').onclick=()=>{if(index<courses[course].lessons.length-1){index++;render()}};$('menu').onclick=()=>$('nav').classList.toggle('open');document.querySelectorAll('nav a').forEach(a=>a.onclick=()=>$('nav').classList.remove('open'));applyLanguage();render();routeFromHash();
 
-/* Floating Codie on the home page. The lesson page gets its own tip-side robot. */
+/* The original hero robot smoothly shrinks and glides to alternating screen edges. */
 const scrollCodie=document.createElement('aside');
-scrollCodie.className='scroll-codie side-right';
+scrollCodie.className='scroll-codie';
 scrollCodie.setAttribute('aria-hidden','true');
-const scrollRobot=document.querySelector('.robot-stage .robot');
-if(scrollRobot)scrollCodie.appendChild(scrollRobot.cloneNode(true));
 const scrollBubble=document.createElement('div');
 scrollBubble.className='scroll-codie-bubble';
 scrollCodie.appendChild(scrollBubble);
 document.body.appendChild(scrollCodie);
+const heroCodie=document.querySelector('.robot-stage .robot');
+let codieDocked=false;
 function updateScrollCodie(){
  const y=window.scrollY||0;
  if(document.body.classList.contains('course-mode')||y<180){
   scrollCodie.classList.remove('visible');
+  if(heroCodie&&codieDocked){
+   heroCodie.classList.remove('codie-docked','codie-right');
+   heroCodie.style.top='';heroCodie.style.left='';heroCodie.style.right='';heroCodie.style.bottom='';
+   codieDocked=false;
+  }
   return;
  }
- const later=y>=document.getElementById('how').offsetTop- Math.round(innerHeight*.55);
+ const later=y>=document.getElementById('how').offsetTop-Math.round(innerHeight*.55);
  const side=later?'side-right':'side-left';
+ if(heroCodie&&!codieDocked){
+  const rect=heroCodie.getBoundingClientRect();
+  heroCodie.style.top=rect.top+'px';heroCodie.style.left=rect.left+'px';
+  heroCodie.style.right='auto';heroCodie.classList.add('codie-docked');
+  codieDocked=true;
+  requestAnimationFrame(()=>{heroCodie.style.top='';heroCodie.style.left='';heroCodie.classList.toggle('codie-right',later)});
+ }else if(heroCodie){heroCodie.classList.toggle('codie-right',later)}
  scrollCodie.classList.toggle('side-left',side==='side-left');
  scrollCodie.classList.toggle('side-right',side==='side-right');
  scrollBubble.textContent=later
